@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,18 @@ namespace pptranspose2r
                 hd.Add(new(header[i].Replace("\"", ""), data[i].Replace("\"", "")));
 
             return (data[0].Replace("\"", ""), hd);
+        }
+
+        public void SaveRecordsTo(string file)
+        {
+            List<String> lines = new();
+            string header = "ParticipantID, " + String.Join(", ", DataRecord.DataHeaders);
+            lines.Add(header);
+
+            foreach (DataRecord dr in Records)
+                lines.Add(dr.GetRLine(ParticipantID));
+
+            File.WriteAllLines(file, lines);
         }
 
     }

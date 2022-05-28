@@ -61,21 +61,21 @@ namespace pptranspose2r
         /// <summary>
         /// The header texts we are expecting.
         /// </summary>
-        private readonly string[] DataAverageHeaders = new string[] {"Waking wear time_Avg",
-                                                                     "Sitting time_Avg",
-                                                                     "Standing time_Avg",
-                                                                     "Total stepping time_Avg",
-                                                                     "Light stepping time_Avg",
-                                                                     "MVPA stepping time_Avg",
-                                                                     "Number of sitting bouts_Avg",
-                                                                     "Number of steps_Avg",
-                                                                     "Sitting0_30_Avg",
-                                                                     "Sitting30_60_Avg",
-                                                                     "Sitting60+_Avg",
-                                                                     "Sitting0_30_t_Avg",
-                                                                     "Sitting30_60_t_Avg",
-                                                                     "Sitting60+_t_Avg",
-                                                                     "Weartime days"};
+        public static string[] DataAverageHeaders = new string[] {"Waking wear time_Avg",
+                                                                  "Sitting time_Avg",
+                                                                  "Standing time_Avg",
+                                                                  "Total stepping time_Avg",
+                                                                  "Light stepping time_Avg",
+                                                                  "MVPA stepping time_Avg",
+                                                                  "Number of sitting bouts_Avg",
+                                                                  "Number of steps_Avg",
+                                                                  "Sitting0_30_Avg",
+                                                                  "Sitting30_60_Avg",
+                                                                  "Sitting60+_Avg",
+                                                                  "Sitting0_30_t_Avg",
+                                                                  "Sitting30_60_t_Avg",
+                                                                  "Sitting60+_t_Avg",
+                                                                  "Weartime days"};
 
     }
 

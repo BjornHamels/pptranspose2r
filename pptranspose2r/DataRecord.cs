@@ -37,7 +37,7 @@ namespace pptranspose2r
         /// <summary>
         /// Constructor used when reading the strings unparsed from file.
         /// </summary>
-        public DataRecord(IEnumerable<HeaderData> hd) : 
+        public DataRecord(IEnumerable<HeaderData> hd) :
             this(hd.ElementAt(0).Data,
                  Convert.ToDecimal(hd.ElementAt(1).Data, nfiDecimalDot),
                  Convert.ToDecimal(hd.ElementAt(2).Data, nfiDecimalDot),
@@ -67,21 +67,21 @@ namespace pptranspose2r
         /// <summary>
         /// The header texts we are expecting.
         /// </summary>
-        private readonly string[] DataHeaders = new string[] {"Date",
-                                                              "Sitting0_30",
-                                                              "Sitting30_60",
-                                                              "Sitting60+",
-                                                              "Waking wear time",
-                                                              "Sitting time",
-                                                              "Standing time",
-                                                              "Total stepping time",
-                                                              "Light stepping time",
-                                                              "MVPA stepping time",
-                                                              "Number of sitting bouts",
-                                                              "Number of steps",
-                                                              "Sitting0_30_t",
-                                                              "Sitting30_60_t",
-                                                              "Sitting60+_t"};
+        public static string[] DataHeaders = new string[] {"Date",
+                                                           "Sitting0_30",
+                                                           "Sitting30_60",
+                                                           "Sitting60+",
+                                                           "Waking wear time",
+                                                           "Sitting time",
+                                                           "Standing time",
+                                                           "Total stepping time",
+                                                           "Light stepping time",
+                                                           "MVPA stepping time",
+                                                           "Number of sitting bouts",
+                                                           "Number of steps",
+                                                           "Sitting0_30_t",
+                                                           "Sitting30_60_t",
+                                                           "Sitting60+_t"};
 
         /// <summary>
         /// Returns a true DateOnly object of this records Date field.
@@ -107,5 +107,26 @@ namespace pptranspose2r
             return GetDateOnly().CompareTo(other.GetDateOnly());
         }
 
+        /// <summary>
+        /// Returns a nicely formatted horizontal csv line R can easly read.
+        /// </summary>
+        /// <param name="ParticipantID">The involved participant.</param>
+        /// <returns>The csv line that is nicely formatted.</returns>
+        public string GetRLine(string ParticipantID)
+        {
+            NumberFormatInfo dot = new NumberFormatInfo();
+            dot.NumberDecimalSeparator = ".";
+
+            return $"{ParticipantID}, {GetDateOnly().ToString("yyyy-MM-dd")}, {Sitting0_30.ToString(nfiDecimalDot)}, " +
+                   $"{Sitting30_60.ToString(nfiDecimalDot)}, {Sitting60plus.ToString(nfiDecimalDot)}, " +
+                   $"{WakingWearTime.ToString(nfiDecimalDot)}, {SittingTime.ToString(nfiDecimalDot)}, " +
+                   $"{StandingTime.ToString(nfiDecimalDot)}, {TotalSteppingTime.ToString(nfiDecimalDot)}, " +
+                   $"{LightSteppingTime.ToString(nfiDecimalDot)}, {MVPAsteppingTime.ToString(nfiDecimalDot)}, " +
+                   $"{NumberOfSittingBouts.ToString(nfiDecimalDot)}, {NumberOfSteps.ToString(nfiDecimalDot)}, " +
+                   $"{Sitting0_30_t.ToString(nfiDecimalDot)}, {Sitting30_60_t.ToString(nfiDecimalDot)}, " +
+                   $"{Sitting60plus_t.ToString(nfiDecimalDot)}";
+        }
+
     }
+
 }

@@ -60,7 +60,8 @@
             this.lbLog.Items.AddRange(new object[] {
             "Loading a PP .csv file will instantly save 2 more files.",
             "This is the log of all operations.",
-            "---"});
+            "---- Begin ----",
+            ""});
             this.lbLog.Location = new System.Drawing.Point(0, 87);
             this.lbLog.Name = "lbLog";
             this.lbLog.Size = new System.Drawing.Size(876, 512);
