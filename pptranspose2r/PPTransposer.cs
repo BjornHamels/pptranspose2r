@@ -22,15 +22,34 @@ namespace pptranspose2r
         /// </summary>
         private void btLoadPPcsv_Click(object sender, EventArgs e)
         {
-            var result = ofdCSVKeuze.ShowDialog();
-            if (result == DialogResult.OK)
+            try
             {
-                string path = Path.GetDirectoryName(ofdCSVKeuze.FileName);
-                string inputFile = ofdCSVKeuze.FileName;
-                string participantID = "participantID";
-                string outputFile = path + $"\\{participantID}_pptranspose2r.csv";
-                lbInputFile.Text = inputFile;
-                lbOutputFile.Text = outputFile;
+                var result = ofdCSVKeuze.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string path = Path.GetDirectoryName(ofdCSVKeuze.FileName);
+                    string inputFile = ofdCSVKeuze.FileName;
+
+                    PPcsvReader reader = new(inputFile);
+
+                    string rDataOut = path + $"\\{reader.ParticipantID}_pptranspose2r.csv";
+                    string avgDataOut = path + $"\\{reader.ParticipantID}_pptranspose2r_avgrecord.csv";
+
+                    lbLog.Items.Add("---- Success ----");
+                    lbLog.Items.Add($"Details: n={reader.NumRecords}, first={reader.FirstDate}, last={reader.LastDate}");
+                    lbLog.Items.Add($"Read: {inputFile}");
+                    lbLog.Items.Add($"Saved: {rDataOut}");
+                    lbLog.Items.Add($"Saved: {avgDataOut}");
+                    lbLog.Items.Add($"Average record: {reader.AverageRecord}");
+                }
+            }
+            catch (Exception ex)
+            {
+                lbLog.Items.Add("---- ERROR ----");
+                lbLog.Items.Add(ex.Message);
+                lbLog.Items.Add(ex.StackTrace);
+                MessageBox.Show("Something went wrong while transposing :(. We're both sad this hapened!\n\nTech talk: " +
+                                ex.Message + "\n\nTech details: \n" + ex.StackTrace);
             }
         }
     }

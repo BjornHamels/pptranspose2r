@@ -30,15 +30,15 @@
         {
             this.btLoadPPcsv = new System.Windows.Forms.Button();
             this.ofdCSVKeuze = new System.Windows.Forms.OpenFileDialog();
-            this.lbInputFile = new System.Windows.Forms.Label();
-            this.lbOutputFile = new System.Windows.Forms.Label();
+            this.lbLog = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btLoadPPcsv
             // 
-            this.btLoadPPcsv.Location = new System.Drawing.Point(12, 42);
+            this.btLoadPPcsv.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btLoadPPcsv.Location = new System.Drawing.Point(0, 0);
             this.btLoadPPcsv.Name = "btLoadPPcsv";
-            this.btLoadPPcsv.Size = new System.Drawing.Size(303, 87);
+            this.btLoadPPcsv.Size = new System.Drawing.Size(876, 87);
             this.btLoadPPcsv.TabIndex = 0;
             this.btLoadPPcsv.Text = "Load PP .csv";
             this.btLoadPPcsv.UseVisualStyleBackColor = true;
@@ -52,36 +52,30 @@
             this.ofdCSVKeuze.InitialDirectory = "./";
             this.ofdCSVKeuze.Title = "Kies PP csv bestand";
             // 
-            // lbInputFile
+            // lbLog
             // 
-            this.lbInputFile.AutoSize = true;
-            this.lbInputFile.Location = new System.Drawing.Point(338, 42);
-            this.lbInputFile.Name = "lbInputFile";
-            this.lbInputFile.Size = new System.Drawing.Size(113, 32);
-            this.lbInputFile.TabIndex = 1;
-            this.lbInputFile.Text = "Open file";
-            // 
-            // lbOutputFile
-            // 
-            this.lbOutputFile.AutoSize = true;
-            this.lbOutputFile.Location = new System.Drawing.Point(338, 97);
-            this.lbOutputFile.Name = "lbOutputFile";
-            this.lbOutputFile.Size = new System.Drawing.Size(551, 32);
-            this.lbOutputFile.TabIndex = 2;
-            this.lbOutputFile.Text = "Loading the file instantly saves the processed data";
+            this.lbLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbLog.FormattingEnabled = true;
+            this.lbLog.ItemHeight = 32;
+            this.lbLog.Items.AddRange(new object[] {
+            "Loading a PP .csv file will instantly save 2 more files.",
+            "This is the log of all operations.",
+            "---"});
+            this.lbLog.Location = new System.Drawing.Point(0, 87);
+            this.lbLog.Name = "lbLog";
+            this.lbLog.Size = new System.Drawing.Size(876, 512);
+            this.lbLog.TabIndex = 1;
             // 
             // PPTransposer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1456, 192);
-            this.Controls.Add(this.lbOutputFile);
-            this.Controls.Add(this.lbInputFile);
+            this.ClientSize = new System.Drawing.Size(876, 599);
+            this.Controls.Add(this.lbLog);
             this.Controls.Add(this.btLoadPPcsv);
             this.Name = "PPTransposer";
             this.Text = "PPTransposer";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -89,7 +83,6 @@
 
         private Button btLoadPPcsv;
         private OpenFileDialog ofdCSVKeuze;
-        private Label lbInputFile;
-        private Label lbOutputFile;
+        private ListBox lbLog;
     }
 }
