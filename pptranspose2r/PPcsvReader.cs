@@ -62,6 +62,10 @@ namespace pptranspose2r
             return (data[0].Replace("\"", ""), hd);
         }
 
+        /// <summary>
+        /// Saves the records to a file R can more easely read.
+        /// </summary>
+        /// <param name="file">File name to save to.</param>
         public void SaveRecordsTo(string file)
         {
             List<String> lines = new();
@@ -70,6 +74,21 @@ namespace pptranspose2r
 
             foreach (DataRecord dr in Records)
                 lines.Add(dr.GetRLine(ParticipantID));
+
+            File.WriteAllLines(file, lines);
+        }
+
+        /// <summary>
+        /// Saves the tail average record to a file.
+        /// </summary>
+        /// <param name="file">File name to save to.</param>
+        public void SaveAverageRecordTo(string file)
+        {
+            List<String> lines = new();
+            string header = "ParticipantID, " + String.Join(", ", DataAverageRecord.DataAverageHeaders);
+            lines.Add(header);
+
+            lines.Add(AverageRecord.GetRLine(ParticipantID));
 
             File.WriteAllLines(file, lines);
         }

@@ -36,7 +36,7 @@ namespace pptranspose2r
         /// <summary>
         /// Constructor used when reading the strings unparsed from file.
         /// </summary>
-        public DataAverageRecord(IEnumerable<HeaderData> hd) : 
+        public DataAverageRecord(IEnumerable<HeaderData> hd) :
             this(Convert.ToDecimal(hd.ElementAt(0).Data, nfiDecimalDot),
                  Convert.ToDecimal(hd.ElementAt(1).Data, nfiDecimalDot),
                  Convert.ToDecimal(hd.ElementAt(2).Data, nfiDecimalDot),
@@ -76,6 +76,24 @@ namespace pptranspose2r
                                                                   "Sitting30_60_t_Avg",
                                                                   "Sitting60+_t_Avg",
                                                                   "Weartime days"};
+
+
+        /// <summary>
+        /// Returns this average record as a horizontal csv line.
+        /// </summary>
+        /// <param name="ParticipantID">The involved participant.</param>
+        /// <returns>The csv line of this average record.</returns>
+        public string GetRLine(string ParticipantID)
+        {
+            return $"{ParticipantID}, {WakingWearTime_Avg.ToString(nfiDecimalDot)}, " +
+                   $"{SittingTime_Avg.ToString(nfiDecimalDot)}, {StandingTime_Avg.ToString(nfiDecimalDot)}, " +
+                   $"{TotalSteppingTime_Avg.ToString(nfiDecimalDot)}, {LightSteppingTime_Avg.ToString(nfiDecimalDot)}, " +
+                   $"{MVPAsteppingTime_Avg.ToString(nfiDecimalDot)}, {NumberOfSittingBouts_Avg.ToString(nfiDecimalDot)}, " +
+                   $"{NumberOfSteps_Avg.ToString(nfiDecimalDot)}, {Sitting0_30_Avg.ToString(nfiDecimalDot)}, " +
+                   $"{Sitting30_60_Avg.ToString(nfiDecimalDot)}, {Sitting60plus_Avg.ToString(nfiDecimalDot)}, " +
+                   $"{Sitting0_30_t_Avg.ToString(nfiDecimalDot)}, {Sitting30_60_t_Avg.ToString(nfiDecimalDot)}, " +
+                   $"{Sitting60plus_t_Avg.ToString(nfiDecimalDot)}, {WeartimeDays.ToString(nfiDecimalDot)}";
+        }
 
     }
 

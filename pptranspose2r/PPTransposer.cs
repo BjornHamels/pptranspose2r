@@ -36,6 +36,7 @@ namespace pptranspose2r
                     string avgDataOut = path + $"\\{reader.ParticipantID}_pptranspose2r_avgrecord.csv";
 
                     reader.SaveRecordsTo(rDataOut);
+                    reader.SaveAverageRecordTo(avgDataOut);
 
                     lbLog.Items.Add("---- Success ----");
                     lbLog.Items.Add($"Details: n={reader.NumRecords}, first={reader.FirstDate}, last={reader.LastDate}");

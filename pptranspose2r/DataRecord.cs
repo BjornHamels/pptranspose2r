@@ -114,9 +114,6 @@ namespace pptranspose2r
         /// <returns>The csv line that is nicely formatted.</returns>
         public string GetRLine(string ParticipantID)
         {
-            NumberFormatInfo dot = new NumberFormatInfo();
-            dot.NumberDecimalSeparator = ".";
-
             return $"{ParticipantID}, {GetDateOnly().ToString("yyyy-MM-dd")}, {Sitting0_30.ToString(nfiDecimalDot)}, " +
                    $"{Sitting30_60.ToString(nfiDecimalDot)}, {Sitting60plus.ToString(nfiDecimalDot)}, " +
                    $"{WakingWearTime.ToString(nfiDecimalDot)}, {SittingTime.ToString(nfiDecimalDot)}, " +
